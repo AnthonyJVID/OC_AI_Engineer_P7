@@ -4,6 +4,4 @@ numpy
 pandas
 pickle-mixin
 gunicorn
-logging
-AzureLogHandler
 opencensus
