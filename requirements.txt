@@ -5,3 +5,4 @@ pandas
 pickle-mixin
 gunicorn
 opencensus
+opencensus-ext-azure
