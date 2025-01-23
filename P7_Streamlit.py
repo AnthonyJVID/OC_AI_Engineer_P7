@@ -4,6 +4,16 @@ import pandas as pd
 import pickle
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+import logging
+
+# Configurez Application Insights
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(connection_string="InstrumentationKey=9d9b8b78-bac1-4b34-ad55-6a1e85354a11"))
+
+# Fonction pour envoyer une trace à Application Insights
+def log_non_validation(tweet, prediction):
+    logger.warning(f"Tweet non validé : {tweet}, Prédiction : {prediction}")
 
 # Chargement des ressources
 @st.cache_resource
@@ -63,6 +73,8 @@ if st.button("Prédire"):
             st.session_state.validation = "validée"
         if st.button("Non", key="no_button"):
             st.session_state.validation = "rejetée"
+            # Envoyer une trace à Application Insights
+            log_non_validation(user_input, sentiment)
 
 # Afficher le statut de validation
 if st.session_state.validation == "validée":
