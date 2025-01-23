@@ -6,3 +6,4 @@ pickle-mixin
 gunicorn
 logging
 AzureLogHandler
+opencensus
