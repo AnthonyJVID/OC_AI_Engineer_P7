@@ -9,7 +9,7 @@ def get_logger():
     if not logger.handlers:
         logger.setLevel(logging.WARNING)
         azure_handler = AzureLogHandler(
-            connection_string="InstrumentationKey=9d9b8b78-bac1-4b34-ad55-6a1e85354a11;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=502c9ce7-c180-47a4-ab7b-3e29bab8837e"
+            connection_string="InstrumentationKey="
         )
         logger.addHandler(azure_handler)
     return logger
@@ -17,7 +17,7 @@ def get_logger():
 logger = get_logger()
 
 # URL de votre API locale
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = "https://airtweetsapi.azurewebsites.net/predict"
 
 # Fonction pour appeler l'API
 def call_api(tweet):

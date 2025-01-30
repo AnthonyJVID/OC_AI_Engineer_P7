@@ -23,11 +23,7 @@ class UserFeedbackRequest(BaseModel):
     correct: bool
 
 # 2) Instancier l'application FastAPI
-app = FastAPI(
-    title="Sentiment Analysis API",
-    description="API de prédiction du sentiment d'un tweet (GloVe + GRU).",
-    version="1.1"
-)
+app = FastAPI()
 
 # 3) Configuration Azure Monitor
 tracer_provider = TracerProvider()
