@@ -27,7 +27,7 @@ app = FastAPI()
 
 # 3) Configuration Azure Monitor
 tracer_provider = TracerProvider()
-exporter = exporter = OTLPSpanExporter(endpoint="https://canadaeast.monitor.azure.com/v2/track")
+exporter = OTLPSpanExporter(endpoint="https://westeurope.monitor.azure.com")
 tracer_provider.add_span_processor(SimpleSpanProcessor(exporter))
 trace.set_tracer_provider(tracer_provider)
 tracer = trace.get_tracer(__name__)
