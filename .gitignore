@@ -11,6 +11,7 @@ __pycache__/
 *.ckpt
 *.pickle
 *.pkl
+*.csv
 
 # 🔹 Ignorer les fichiers spécifiques à Jupyter Notebook
 .ipynb_checkpoints/
@@ -36,4 +37,4 @@ utils.py
 !P7_Streamlit
 
 # ✅ Assurer que certains fichiers sont bien suivis
-!.gitattributesdata/tweets.csv
+!.gitattributes
