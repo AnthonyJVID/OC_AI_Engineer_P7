@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/249847493871631252/447307cb1d5e401fa80d1ef44b06d410/artifacts
+end_time: 1736426345622
+entry_point_name: ''
+experiment_id: '249847493871631252'
+lifecycle_stage: active
+run_id: 447307cb1d5e401fa80d1ef44b06d410
+run_name: GloVe_Training
+run_uuid: 447307cb1d5e401fa80d1ef44b06d410
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736426317877
+status: 3
+tags: []
+user_id: icema

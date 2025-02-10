@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/icema/OpenClassrooms/AI_Engineer/.venv7/mlruns/0/418f336cdcf541c6b7bce3ff452aed59/artifacts
+end_time: 1736417538887
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 418f336cdcf541c6b7bce3ff452aed59
+run_name: GloVe_Training
+run_uuid: 418f336cdcf541c6b7bce3ff452aed59
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736417493753
+status: 3
+tags: []
+user_id: icema

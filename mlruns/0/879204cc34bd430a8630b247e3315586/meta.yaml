@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/icema/OpenClassrooms/AI_Engineer/.venv7/mlruns/0/879204cc34bd430a8630b247e3315586/artifacts
+end_time: 1736417021537
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 879204cc34bd430a8630b247e3315586
+run_name: FastText_Training
+run_uuid: 879204cc34bd430a8630b247e3315586
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736417012172
+status: 3
+tags: []
+user_id: icema

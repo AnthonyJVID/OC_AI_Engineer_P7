@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+tensorflow
+numpy
+pickle-mixin
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp

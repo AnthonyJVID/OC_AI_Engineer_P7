@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/249847493871631252/1002ccbef32d4927860fbc6366fcbcfb/artifacts
+end_time: 1736426279610
+entry_point_name: ''
+experiment_id: '249847493871631252'
+lifecycle_stage: active
+run_id: 1002ccbef32d4927860fbc6366fcbcfb
+run_name: FastText_Training
+run_uuid: 1002ccbef32d4927860fbc6366fcbcfb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736426270847
+status: 3
+tags: []
+user_id: icema

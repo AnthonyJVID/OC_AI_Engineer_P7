@@ -1,0 +1,30 @@
+connexion azure
+az login
+
+installation requirements.txt
+pip install -r requirements.txt
+
+Groupe ressources Azure
+az group create --name NOMDUGROUPE --location ZONE (esstus, france centrale...)
+
+Plan de service (gratuit)
+az appservice plan create --name NOMSERVICEPLAN --resource-group NOMDUGROUPE --sku F1
+
+Création de l'application
+az webapp create --resource-group NOMDUGROUPE --plan NOMSERVICEPLAN --name NOMAPPLICATION --runtime "PYTHON:3.XX"
+
+Git local
+az webapp deployment source config-local-git --name NOMAPPLICATION --resource-group NOMDUGROUPE
+
+Code vers Azure
+git push azure main/master (ID:email + password)
+
+
+Restart webapp
+az webapp restart --name AirTweetsAPI --resource-group GroupRessourcesP7
+
+log du serveur
+az webapp log tail --name AirTweetsAPI --resource-group GroupRessourcesP7
+
+SSH
+az webapp ssh --name AirTweetsAPI --resource-group GroupRessourcesP7

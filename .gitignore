@@ -1,0 +1,39 @@
+# ⚠️ Ignorer les fichiers générés automatiquement
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.DS_Store
+
+# 🔹 Ignorer les fichiers temporaires de modèles et de checkpoints
+*.keras
+*.h5
+*.ckpt
+*.pickle
+*.pkl
+
+# 🔹 Ignorer les fichiers spécifiques à Jupyter Notebook
+.ipynb_checkpoints/
+TEST.ipynb
+Test_GPU.ipynb
+Projet 7_BERT.ipynb
+
+# 🔹 Ignorer les fichiers de test et de debugging
+FastText_gru_model.keras
+model_best_weights.keras
+init.py
+utils.py
+
+# ✅ Inclure uniquement les fichiers spécifiques nécessaires au projet
+!Glove_gru_model.keras
+!maxlen.pickle
+!tokenizer.pickle
+!startup.txt
+!test_streamapi.py
+!requirements.txt
+!app.py
+!Projet 7.ipynb
+!P7_Streamlit
+
+# ✅ Assurer que certains fichiers sont bien suivis
+!.gitattributes
