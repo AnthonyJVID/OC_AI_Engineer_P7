@@ -15,6 +15,29 @@ from opentelemetry import trace
 # Suppression des messages relatifs à TensorFlow
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
+# Définition des chemins des fichiers
+BASE_DIR = os.path.dirname(__file__)  # Répertoire contenant le fichier main.py
+MODEL_PATH = os.path.join(BASE_DIR, "../models/Glove_gru_model.keras")
+TOKENIZER_PATH = os.path.join(BASE_DIR, "../models/tokenizer.pickle")
+MAXLEN_PATH = os.path.join(BASE_DIR, "../models/maxlen.pickle")
+
+# Vérifier l'existence des fichiers
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError(f"Modèle introuvable : {MODEL_PATH}")
+if not os.path.exists(TOKENIZER_PATH):
+    raise FileNotFoundError(f"Tokenizer introuvable : {TOKENIZER_PATH}")
+if not os.path.exists(MAXLEN_PATH):
+    raise FileNotFoundError(f"Maxlen introuvable : {MAXLEN_PATH}")
+
+# Charger le modèle, le tokenizer et la longueur maximale
+model = load_model(MODEL_PATH)
+
+with open(TOKENIZER_PATH, "rb") as handle:
+    tokenizer = pickle.load(handle)
+
+with open(MAXLEN_PATH, "rb") as handle:
+    max_len = pickle.load(handle)
+
 # 1) Définition des schémas Pydantic
 class TweetRequest(BaseModel):
     text: str
@@ -29,10 +52,6 @@ app = FastAPI()
 def read_root():
     return {"message": "API opérationnelle"}
 
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
-
 # 3) Configuration Azure Monitor
 tracer_provider = TracerProvider()
 exporter = OTLPSpanExporter(endpoint="https://uksouth.monitor.azure.com")
@@ -40,17 +59,7 @@ tracer_provider.add_span_processor(SimpleSpanProcessor(exporter))
 trace.set_tracer_provider(tracer_provider)
 tracer = trace.get_tracer(__name__)
 
-# 4) Charger les ressources (modèle, tokenizer, max_len)
-MODEL_PATH = "Glove_gru_model.keras"
-model = load_model(MODEL_PATH)
-
-with open("tokenizer.pickle", "rb") as handle:
-    tokenizer = pickle.load(handle)
-
-with open("maxlen.pickle", "rb") as handle:
-    max_len = pickle.load(handle)
-
-# 5) Fonction de prédiction
+# 4) Fonction de prédiction
 def predict_sentiment(text: str):
     seq = tokenizer.texts_to_sequences([text])
     pad = pad_sequences(seq, maxlen=max_len, padding="post", truncating="post")
@@ -58,7 +67,7 @@ def predict_sentiment(text: str):
     sentiment_label = "positif" if prob >= 0.5 else "negatif"
     return float(prob), sentiment_label
 
-# 6) Endpoint POST -> /predict
+# 5) Endpoint POST -> /predict
 @app.post("/predict")
 def get_prediction(tweet_req: TweetRequest):
     text = tweet_req.text
@@ -76,7 +85,7 @@ def get_prediction(tweet_req: TweetRequest):
         "sentiment": label
     }
 
-# 7) Endpoint POST -> /feedback
+# 6) Endpoint POST -> /feedback
 @app.post("/feedback")
 def user_feedback(feedback: UserFeedbackRequest):
     with tracer.start_as_current_span("user_feedback") as span:
@@ -84,6 +93,7 @@ def user_feedback(feedback: UserFeedbackRequest):
 
     return {"message": "Feedback enregistré avec succès."}
 
-# 8) Application en local (développement)
+# 7) Application en local (développement)
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
