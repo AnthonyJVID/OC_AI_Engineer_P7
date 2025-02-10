@@ -40,3 +40,5 @@ utils.py
 !.gitattributesdata/tweets.csv
 mlruns/
 mlflow.db
+notebooks/*.npy
+notebooks/*.png
