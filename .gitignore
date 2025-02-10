@@ -36,4 +36,4 @@ utils.py
 !P7_Streamlit
 
 # ✅ Assurer que certains fichiers sont bien suivis
-!.gitattributes
+!.gitattributesdata/tweets.csv
