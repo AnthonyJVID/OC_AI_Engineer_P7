@@ -38,3 +38,5 @@ utils.py
 
 # ✅ Assurer que certains fichiers sont bien suivis
 !.gitattributesdata/tweets.csv
+mlruns/
+mlflow.db
